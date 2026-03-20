@@ -1,11 +1,11 @@
-# 📘 Gabarito Explicado — Sistema Acadêmico em Java
+# 📘 Gabarito Atualizado — Sistema Acadêmico (Nível Básico)
 
-Este gabarito foi feito para **te ajudar a entender** os conceitos, não apenas copiar código 🙂
+Este gabarito está alinhado com o exercício atual.
 
-Aqui você verá:
-- ✔️ Código
-- ✔️ Explicação simples
-- ✔️ Dicas importantes
+⚠️ Importante:
+- NÃO utiliza ArrayList
+- NÃO utiliza classe abstrata
+- Foco apenas em: herança, sobrescrita, sobrecarga e polimorfismo básico
 
 ---
 
@@ -15,45 +15,30 @@ Aqui você verá:
 
 ### Pessoa
 ```java
-public String saudacao() {
-    return "Olá!";
+public class Pessoa {
+    public String getDescricao() {
+        return "Pessoa";
+    }
 }
 ```
 
 ### Aluno
 ```java
-@Override
-public String saudacao() {
-    return "Oi, sou um aluno!";
-}
-```
+public class Aluno extends Pessoa {
 
-### Professor
-```java
-@Override
-public String saudacao() {
-    return "Olá, sou um professor!";
+    @Override
+    public String getDescricao() {
+        return "Aluno";
+    }
 }
 ```
 
 ## 💡 Explicação
 
-- Todas as classes têm um método com o **mesmo nome**
-- Mas cada uma tem um comportamento diferente
+- O método tem o mesmo nome nas duas classes
+- O comportamento muda na classe filha
 
-👉 Isso é **SOBRESCRITA**
-
-📌 Importante:
-Quando você faz:
-
-```java
-Pessoa p = new Aluno();
-System.out.println(p.saudacao());
-```
-
-✔️ O Java executa o método do **Aluno**, não da Pessoa
-
-👉 Isso acontece por causa do **polimorfismo**
+👉 Isso é **sobrescrita**
 
 ---
 
@@ -69,22 +54,14 @@ public double calcularMedia(double n1, double n2) {
 public double calcularMedia(double n1, double n2, double n3) {
     return (n1 + n2 + n3) / 3;
 }
-
-public double calcularMedia(double n1, double n2, double n3, double n4) {
-    return (n1 + n2 + n3 + n4) / 4;
-}
 ```
 
 ## 💡 Explicação
 
-- Todos os métodos têm o **mesmo nome**
-- Mas têm **parâmetros diferentes**
+- Mesmo nome de método
+- Parâmetros diferentes
 
-👉 Isso é **SOBRECARGA**
-
-📌 O Java escolhe qual método usar olhando:
-- quantidade de parâmetros
-- tipo dos parâmetros
+👉 Isso é **sobrecarga**
 
 ---
 
@@ -92,11 +69,22 @@ public double calcularMedia(double n1, double n2, double n3, double n4) {
 
 ## ✔️ Código
 
+### Pessoa
 ```java
-@Override
 public void exibirDados() {
-    super.exibirDados();
-    System.out.println("Salário: " + calcularSalario());
+    System.out.println("Dados da pessoa");
+}
+```
+
+### Professor
+```java
+public class Professor extends Pessoa {
+
+    @Override
+    public void exibirDados() {
+        super.exibirDados();
+        System.out.println("Dados do professor");
+    }
 }
 ```
 
@@ -105,22 +93,19 @@ public void exibirDados() {
 - `super` chama o método da classe pai
 - Evita repetir código
 
-👉 Boa prática: **reutilizar código**
-
 ---
 
-# 🔴 4. Polimorfismo
+# 🔴 4. Polimorfismo (sem ArrayList)
 
-## ✔️ Código (sem ArrayList)
+## ✔️ Código
 
 ```java
 Pessoa[] pessoas = new Pessoa[2];
 
-pessoas[0] = new Aluno("João", 20, 8, 7);
-pessoas[1] = new Professor("Maria", 40, 3000, 10);
+pessoas[0] = new Aluno();
+pessoas[1] = new Professor();
 
 for (Pessoa p : pessoas) {
-    p.exibirDados();
     System.out.println(p.getDescricao());
 }
 ```
@@ -128,75 +113,27 @@ for (Pessoa p : pessoas) {
 ## 💡 Explicação
 
 - A variável é do tipo `Pessoa`
-- Mas os objetos são `Aluno` e `Professor`
+- Os objetos são diferentes (`Aluno` e `Professor`)
 
-👉 O Java decide qual método usar **em tempo de execução**
+👉 O Java decide qual método executar em tempo de execução
 
 Isso é:
-👉 **POLIMORFISMO**
-
----
-
-# 🟣 5. Sem Classe Abstrata (Versão Simples)
-
-## ✔️ Código
-
-```java
-public class Pessoa {
-
-    protected String nome;
-    protected int idade;
-
-    public Pessoa(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
-    }
-
-    public String getDescricao() {
-        return "Pessoa";
-    }
-}
-```
-
-## 💡 Explicação
-
-- Classe normal pode ser usada diretamente
-- As subclasses podem sobrescrever métodos
-
-👉 Classe abstrata NÃO é obrigatória
-
----
-
-# 💡 Bônus
-
-```java
-public static void gerarRelatorio(Pessoa p) {
-    System.out.println("Nome: " + p.nome);
-    System.out.println("Tipo: " + p.getDescricao());
-}
-```
-
-## 💡 Explicação
-
-Esse método funciona para qualquer objeto que seja `Pessoa`.
-
-👉 Isso é possível graças ao **polimorfismo**
+👉 **polimorfismo**
 
 ---
 
 # 🎯 Resumo Final
 
-| Conceito     | O que significa |
-|--------------|----------------|
-| Herança      | Uma classe herda da outra |
-| Sobrescrita  | Mesmo método, comportamento diferente |
-| Sobrecarga   | Mesmo método, parâmetros diferentes |
-| Polimorfismo | Um método funciona para vários tipos |
+| Conceito     | Exemplo |
+|--------------|--------|
+| Herança      | Aluno extends Pessoa |
+| Sobrescrita  | getDescricao() |
+| Sobrecarga   | calcularMedia() |
+| Polimorfismo | Pessoa p = new Aluno() |
 
 ---
 
 # 🚀 Dica Final
 
-Se você entendeu isso, você já domina a base de **Programação Orientada a Objetos em Java** 💪
-
-Se não, releia com calma e teste no código!
+Teste cada parte do código separadamente.
+Entender é mais importante do que copiar!
