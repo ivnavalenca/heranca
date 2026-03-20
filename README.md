@@ -1,109 +1,102 @@
-# 🎓 Exercícios Complementares — Evolução do Sistema Acadêmico
+# 🎓 Lista de Exercícios — Sobrecarga e Sobrescrita em Java
 
 ## 📌 Contexto
 
-Você já possui um sistema com:
+Você está desenvolvendo um **Sistema Acadêmico** com as classes:
 
 - `Pessoa`
 - `Aluno`
 - `Professor`
 
-Agora seu objetivo é **evoluir esse sistema**, aplicando melhor os conceitos de POO.
-
 ---
 
 # 🟢 1. Exercício Fácil
 
-## 🎯 Objetivo: Modificação simples + sobrescrita
+## 🎯 Objetivo: Sobrescrita (Override)
 
 ### Enunciado
 
-Adicione na classe `Pessoa` o método:
+Crie uma classe `Pessoa` com:
 
 ```java
-public String saudacao() {
-    return "Olá!";
+public String getDescricao() {
+    return "Pessoa";
 }
 ```
 
 Depois:
 
-- Sobrescreva esse método em `Aluno` e `Professor`
-- Cada um deve retornar uma saudação diferente
+- Crie a classe `Aluno` que herda de `Pessoa`
+- Sobrescreva o método para retornar `"Aluno"`
 
 ### ❓ Pergunta
-
-O que acontece quando você chama `saudacao()` usando uma variável do tipo `Pessoa`?
+Qual método será executado?
 
 ---
 
-# 🟡 2. Exercícios Médios
+# 🟡 2. Exercício Médio
 
-## 🟡 Exercício 2
+## 🎯 Objetivo: Sobrecarga (Overload)
 
-### Enunciado
-
-Crie sobrecarga:
+Na classe `Aluno`, implemente:
 
 ```java
-calcularMedia(double n1, double n2, double n3, double n4)
+double calcularMedia(double n1, double n2)
+double calcularMedia(double n1, double n2, double n3)
 ```
 
-### ❓ Pergunta
-
-Como o Java decide qual método chamar?
-
----
-
-## 🟡 Exercício 3
-
-### Enunciado
-
-Sobrescreva `exibirDados()` em `Professor` usando `super`.
-
-### ❓ Pergunta
-
-Qual a vantagem de usar `super`?
+### 📌 Regras
+- Média de 2 notas
+- Média de 3 notas
 
 ---
 
-# 🔴 3. Exercício Difícil
+# 🟡 3. Exercício Médio
 
-## 🎯 Objetivo: Polimorfismo
+## 🎯 Objetivo: Uso de super
 
-Crie uma lista `ArrayList<Pessoa>` e adicione alunos e professores.
+Na classe `Professor`:
 
-Percorra chamando:
-
-- `exibirDados()`
-- `getDescricao()`
+- Sobrescreva `exibirDados()`
+- Use `super.exibirDados()`
 
 ---
 
-# 🟣 4. Desafio Avançado
+# 🔴 4. Exercício Difícil
 
-Transforme `Pessoa` em classe abstrata.
+## 🎯 Objetivo: Polimorfismo (sem ArrayList)
 
-Implemente:
+Use vetor:
 
 ```java
-public abstract String getDescricao();
+Pessoa[] pessoas = new Pessoa[2];
+```
+
+Adicione:
+- 1 aluno
+- 1 professor
+
+Percorra com:
+
+```java
+for (Pessoa p : pessoas) {
+    p.getDescricao();
+}
 ```
 
 ---
 
-# 💡 Bônus
+# 💡 Perguntas
 
-Crie:
-
-```java
-public void gerarRelatorio(Pessoa p)
-```
+- O que é sobrescrita?
+- O que é sobrecarga?
+- Qual a diferença entre elas?
 
 ---
 
 # ✅ Objetivos
 
-- Praticar herança
-- Aplicar sobrecarga e sobrescrita
-- Entender polimorfismo
+- Entender herança
+- Aplicar sobrescrita
+- Aplicar sobrecarga
+- Compreender polimorfismo básico
